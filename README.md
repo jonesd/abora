@@ -1,8 +1,9 @@
 # Abora
 
-Abora is a collection of the Xanadu project with a focus on the Udanax-Gold implementation.
+Abora is a collection of implementations of the Xanadu and Udanax-Gold projects.
 
 For details: http://jonesd.github.io/abora/
+
 
 ## Contact
 
