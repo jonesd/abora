@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+  <head>
+		<link rel="stylesheet" type="text/css" href="style-print.css" media="print"/>
+		<link rel="stylesheet" type="text/css" href="style.css" media="screen"/>
+
+    <title>Abora Applications</title>
+  </head>
+
+  <body class="draft">
+<!-- abora:header -->
+    <h1>Abora Applications</h1>
+<!-- abora:header_close -->
+
+			<p>The Abora server will provide a document server that focuses
+			on the connections between content and their changes. A number
+			of interesting and unusual capabilities arise from the design.
+			These apply at a relatively low level, and it can be confusing
+			to relate these new possibilities with applications that make
+			full use of them.</p>
+
+			<p>The aim of this page is to highlight a number of possible
+			applications that could gain from using an Abora server.
+			Extensions to existing well known applications and services will
+			be sketched out, together with potential new applications. The
+			hope is to help answer the question, "but what can you do with
+			these neat features?"</p>
+				
+
+<a name="wiki"></a>
+<h3>Extending An Existing Wiki Server</h3>
+
+			<p>The family of Wiki web servers are one of the more
+			interesting examples of websites supporting collaboration. They
+			are based on the initially improbable idea of having open access
+			to write and modify any of the text on a page, and create new
+			pages. One can edit an exiting page, inserting your comments
+			into someone else's original text, or even rewriting it. Wikis
+			succeed due to their simplicity and freedom to comment and
+			rework.</p>
+
+			<p>The simplest view is tha an Abora server should provide
+			enough capabilities to allow one to write a stardard wiki web
+			server that could serve web browsers.</p>
+
+			<p>The family of Wiki servers ranges from versions created in an
+			evening from a few short Perl scripts, to pretty sophisticated
+			implementations with JavaScript text editors, XML access and
+			other features.</p>
+
+			<p>Starting from the relatively well known area of Wikis, what
+			kind of additional features or changes to its abilities might an
+			Abora backed implementation enable.</p>
+
+<h4>References</h4>
+
+			<ul>
+
+				<li><a href="http://c2.com/cgi/wiki">WikiWikiWeb</a> -
+					Original Wiki implementation at C2.</li>
+				<li><a href="http://minnow.cc.gatech.edu/swiki">Swiki
+						Swiki</a> - The authors favourite Wiki implementation.</li>
+			</ul>
+
+<h4>Focused Comments</h4>
+
+				<p>One of the typical scenarios with a wiki page is that
+				someone else has written a few screens of text, and you want
+				to make a comment on a couple of sentences in the middle of
+				it. You would either insert a comment line at this point and
+				interrupt the original flow or you could add your comment at
+				the end of the original text, but you would then have to
+				describe the context of your comment by referring back to the
+				line or two you are commenting on before you could make the
+				actual comment.</p>
+
+				<p>With the abora server you could select the sentence you
+				want to comment on, then make your comment, and under the
+				covers your comment would be associated with the original
+				sentence. Effectively there is a link between the sentence and
+				your comment. It would then be up to the wiki server to render
+				that comment in whatever way it liked; possibly an in-line
+				link, or showing your comment in the margin beside the
+				original sentence. Anything is possible with the rendering,
+				but the critical thing is that you have tied your comment to
+				the specific original text. This both saves you from having to
+				describe the context due to association with original text,
+				plus this relationship will survive feature editing and
+				quoting by others. You could also associate a type with the
+				comment, so in this case you may have thought that there was a
+				mistake in the original and so your comment could be clarified
+				as a correction. This provides a compact summary of the
+				comment, and also allows the active reader to better filter
+				additions to a page to help with numerous comments. This
+				technique can also be used to build up a structured dialogue
+				of pro/con arguments and references else where.</p>
+
+<h4>Filtered Notifications</h4>
+
+				<p>Say one is interested in "acceptance tests". Perhaps there
+				is already a wiki page with this title. Most Wikis would allow
+				me to set a trigger such that I receive an email if that page
+				is changed. This allows me to stay up to date with documents
+				and arguments that I find interesting or would like to add as
+				others extend it.</p>
+
+				<p>Extending this the Abora server would also be able to
+				trigger notifications if anyone made a new link onto the
+				acceptance tests page, or if someone copied-and-pasted any
+				text of the acceptance tests page to another page. These
+				triggers can be associated with specific parts of the page, so
+				if you are interested in additional comments and modifications
+				only to a certain paragraph of the page, then triggers will
+				only be fired for that paragraph rather than for a change
+				anywhere else on the page. You could also filter by type of
+				comment, to only show agreements with a paragraph of the
+				page.</p>
+
+
+<h4>Comparing</h4>
+
+				<p>Comparing different versions of the same wiki page would
+				highlight changes made by users such as
+				copying/moving/duplication/quoting changes as those kinds of
+				things rather than just being forced down to primitive inserts
+				or deletes operations.</p>
+
+				<p>The comments that have been made to the acceptance tests
+				paragraph will stay connected to it, even if the acceptance
+				tests page has grown too large and people end up splitting the
+				original paper into 4 separate pages. The differencing stuff
+				also functions at this point, and any links that had made into
+				the original page still stay valid - as the original page is
+				kept - plus you will be able to move forward through the
+				revisions and track the page split up and where the paragraph
+				you were interested in had moved off to. Comparing the
+				original whole page and one of the split off pages you would
+				accurately see the text that had been split off.</p>
+
+
+<h4>Beyond Text</h4>
+
+				<p>Wikis are focused on text. The abora server, not
+				implemented yet, but the udanax-gold server that is the
+				inspiration for my abora work, also works for non text types.
+				So I could imagine a wiki page which includes an image from an
+				advertising campaign. I would now like to comment on the image
+				to show how the viewers eyes moves around the page, and how
+				they balanced the focus on part A of the image with B and C
+				parts. Links can be made from the text description to the
+				specific parts of the image. A suitable rendering could show
+				that. Backfollowing links still works for images, so I could
+				get all the comments on a specific part of the image, or could
+				be informed if anyone modifies or linked to a specific part of
+				the image. I could also create a new page focused on only a
+				couple of sections of the image, so I could transclude those
+				sections of the image onto my new page - so I see just the
+				nose and left ear of the original face, but again the
+				comparison between the full image and my two sections would
+				highlight the similarities, plus anyone could backfollow from
+				the sections to the original image, and comments on either
+				side could be found if the comments were made on the sections.
+				Another example could be a music score rather than an image,
+				plus comments and quoting on sections of that musical
+				score.</p>
+
+
+<!-- abora:footer -->
+$Id$
+<!-- abora:footer_close -->
+
+  </body>
+</html>

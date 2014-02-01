@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+
+  <html>
+
+    <head>
+      <meta	http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta	name=keywords content="Abora,Xanadu,Xanalogical,Udana-Gold,Hypertext,Java,Smalltalk,Dolphin Smalltalk">
+		<link rel="stylesheet" type="text/css" href="../style-print.css" media="print"/>
+		<link rel="stylesheet" type="text/css" href="../style.css" media="screen"/>
+
+	  <title>Udanax-Gold2Java</title>
+    </head>
+
+    <body>
+<!-- abora:header -->
+      <h1>Udanax-Gold2Java</h1>
+<!-- abora:header_close -->
+
+		<p>The <i>UdanaxGold2Java</i> project contains a number of
+		sub-components related to converting the released <a
+		href="http://www.udanax.com/gold/">Udanax-Gold</a> Smalltalk and
+		C++ source code by <a href="http://www.udanax.com/">XOC</a> into
+		Java source code. The aim is to provide a first pass automatic
+		translation of as much of the code as possible. The end result is
+		<b>not</b> compilable but may prove useful for non-Smalltalk users
+		who are interested in reading the Udanax-Gold source code. See the
+		Abora-White project for a working implementation based on the
+		result of this project.</p>
+
+		<p>This project is split up into three sections:</p>
+
+		<ul>
+			<li>The <a href="#udanax-gold">udanax-gold</a> sub-directory contains a number of
+			fragments of the Udanax-Gold source as supplied by XOC. This
+			code was released under a MIT open-source licence.</li>
+
+			<li>The <a href="#translator">translator</a> sub-directory implements a simple Java
+			translator that is used to automatically convert from the
+			Udanax-Gold Smalltalk source to (approximately) Java - though
+			with lots of remaining compilation problems.</li>
+
+			<li>The <a href="#abora-gold">abora-gold</a> sub-directory holds the Java
+			translation of the Udanax-Gold code. This includes the result of
+			the translator application and some hand coded translated
+			classes from C++ code plus some place-holder classes for source
+			that has not been released by XOC yet but is referenced by
+			translated source.</li>
+		</ul>
+
+		<img alt="Translation Process" src="process.png">
+
+<!-- ================================================= -->
+<!-- ================================================= -->
+
+<a name="udanax-gold"></a>
+<h3>Udanax-Gold</h3>
+
+		<p>The <b>Udanax-Gold</b> sub-component contains the source code
+		which is the input to the translator.
+
+		<p>A number of files are present here as it has been a struggle to
+		find a complete set of Udanax-Gold source files. All the following
+		files were originally from XOC but the author acquired them from a number of
+		locations. I believe all are supplied under XOC open-source
+		licence which is based on the very liberal MIT licence.</p>
+
+		<p>It seems that there are still a number of classes from the
+		original that have not yet been released as there are a number of
+		classes referenced from the source that aren't present in the
+		following files. This is probably due to either outdated
+		references, "foreign entanglements" with copyrighted system code
+		or they have somehow gone missing in the release process. At this
+		moment it's not apparent whether the missing classes are
+		significant enough to interfere with later translation efforts. If
+		anybody has access to any additional source then please get in
+		contact. </p>
+
+
+<p><b>udanax-top.st</b><br>
+
+This is the principle Udanax-Gold source released by XOC. It is the core
+			of the system and includes the Ent and Coordinate-Space systems
+			as well as Work/Edition and Front-End wrappers.<br>
+<a href="http://www.udanax.com/gold/">http://www.udanax.com/gold/</a></p>
+
+<p><b>Xanadu-wparray.st<br>
+Xanadu-Xpp-Basic.st<br>
+Xanadu-Xpp-Become.st<br>
+Xanadu-Xpp-Converters.st<br>
+Xanadu-Xpp-fluid.st<br>
+Xanadu-Xpp-Packages.st</b><br>
+
+These are additional Smalltalk source files found on Les Tyrrell's
+			website. The bulk of these files are very Smalltalk specific,
+			but they do prove very interesting in learning the secrets
+			behind the Fluid system, plus the critical Heaper class which is
+			the root of the vast majority of the core Udanax-Gold classes.<br>
+<a href="http://griffin.canis.uiuc.edu:8080/Xanadu">http://griffin.canis.uiuc.edu:8080/Xanadu</a></p>
+
+
+<p><b>c.zip</b><br>
+
+Collection of X++ (the XOC dialect of C++) source which has proven
+			very useful for making up for the missing PrimArray and
+			IntegerVar classes of the core Smalltalk code. There is a
+			mixture of hand created X++ and the results of XOC's own
+			auto-translator from Smalltalk to X++. These classes were found
+			in the CVS section  of Jeff Rush's website.<br>
+<a href="http://www.sunless-sea.net">http://www.sunless-sea.net</a></p>
+
+
+<!-- ================================================= -->
+<!-- ================================================= -->
+
+<a name="translator"></a>
+<h3>Translator</h3>
+
+<p>The Translator is a small Java app to automatically translate from the
+<b>Udanax-Gold</b> Smalltalk(ish) source code into Java.</p>
+
+<p>Translating from Smalltalk source code to Java code is normally a
+very difficult proposition as Smalltalk source does not include
+declared types. Thankfully as a requirement for XOCs own translator to
+X++, their variant of C++, the typing information is present in the
+source code. Unfortunately there are a number of complications; still
+a lot of work to carry out without that much information on what the
+X++ translator did, plus the features and restrictions of Java aren't
+a perfect match for X++, one example is the stricter handling of
+statics in Java and the inability to have an instance and static
+method of the same class with the same signature.</p>
+			
+<p>The Abora-White project was the result of an earlier run of the translator,
+which only produced semi-compilable java code, which was then "finished" by hand.
+As the translator can now produce compilable code for the majority of the Smalltalk
+source, the Abora-White project is now deprecated.</p>
+
+<h4>Using the Translator</h4>
+
+<p>The easiest route to using the Translator is the Ant <tt>build.xml</tt> file
+present in this directory.</p>
+
+<p>Once you have Java JDK 1.4+, Ant 1.5.1+, JUnit 3.8.1 set up, just run
+the following from the command line:</p>
+
+<tt>&gt; <b>ant</b></tt>
+
+<p>You should see some logging info summarising the walk through of a
+number of source Smalltalk files, and a larger number of generated
+Java files. The process should take less than a minute on a reasonable
+machine. You should find approximately 500 classes generated.</p>
+
+<p>The generated Java files are placed in <tt>../abora-gold/src-gen directory</tt>
+under the <tt>org.abora.gold</tt> Java package. </p>
+
+
+<h4>Translator Examples</h4>
+
+		<p>The best way to sample the result of the translator is simply
+		to look at the resulting code in the <tt>src-gen</tt> directory.
+		As a quick introduction I have included a few examples from the
+		<tt>org.abora.ug2java.translator.tests</tt> package to give a
+		flavour for the basic transformations that are used.</p>
+
+		<p>Note the formatting has been manually modified from the
+		original text of each for easier reading. In practice the results
+		of auto-translation should be passed separately through an
+		automatic tidying process.</p>
+
+		<table bgcolor="#ffff99" border="1" width="100%" summary="">
+			<tr bgcolor="#e6e64c">
+					<th width="50%">Smalltalk Source</th>
+					<th width="50%">Java Translation</th>
+				</tr>
+
+				<tr>
+					<td valign="top"><pre><tt><b>test</b><br>	one and: [two]!</tt></pre></td>
+					<td valign="top"><pre><tt>public void <b>test</b>() {<br>	one &amp;&amp; (two);<br>}</tt></pre></td>
+				</tr>
+
+				<tr>
+					<td valign="top"><pre><tt><b>test</b>
+	(one = two)
+		ifTrue: [^one]
+		ifFalse: [^two]!</tt></pre></td>
+					<td valign="top"><pre><tt>public void <b>test</b>() {
+	<b>if</b> (one == two) {
+		<b>return</b> one;
+	} <b>else</b> {
+		<b>return</b> two;
+	}
+}</tt></pre></td>
+				</tr>
+
+				<tr>
+					<td valign="top"><pre><tt><b>test</b>
+	one two three: four and: 55!</tt></pre></td>
+					<td valign="top"><pre><tt>public void <b>test</b>() {
+	one.two().threeAnd(four, 55);
+}</tt></pre></td>
+				</tr>
+
+		</table>
+
+		
+
+<h4>Extending the Translator</h4>
+
+<p>Good Luck! This code was meant to be a throw away weekend project but
+I had to end up extending it quite significantly. Still there isn't
+too much code here, and there is some test coverage of the in-method
+transformations.</p>
+
+<p>The JUnit tests are present in the <tt>org.abora.ug2java.tests.TestWriteMethod</tt>
+class, and can be run courtesy of ant:</p>
+
+<tt>&gt; <b>ant test</b></tt>
+
+
+		<p><tt>TranslateSmalltalk.main(...)</tt> is the entry point of the
+		application taking an output directory, and one or more source
+		Smalltalk files to process.</p>
+
+		<tt>&gt; <b>java org.abora.ug2java.TranslateSmalltalk outputDir udanax-top.st</b></tt>
+
+		<p>The Smalltalk files are stored in a version of the classic
+		Smalltalk Chunk format which effectively has a sequence of chunks
+		of text with a terminating exclamation mark (!). A chunk can
+		define a new class, define a method of a specific method category
+		and arbitrary Smalltalk expressions. More than one class can be
+		defined in each source file.</p>
+
+<p>There are two major passes over the source by TranslateSmalltalk.</p>
+
+<p>The first pass reads in each of the Smalltalk source files in turn.
+For each included class a <tt>ClassWriter</tt> is created and initialised with
+its name, superclass, etc. Also each related chunk is read and either
+added to the classWriter as a simple comment or an instance or static
+method. The Java package of a class is based on its Smalltalk class
+category, and is recorded for each class so that appropriate Java
+import statements can be generated later.</p>
+
+<p>The second pass walks through each <tt>ClassWriter</tt> requesting it to write
+out a suitable .java file for itself. At this point each of its methods
+is translated into Java and written out as part of the class
+definition.</p>
+
+<p>The Smalltalk source for a method is parsed using a <tt>SmalltalkScanner</tt>
+which returns a series of <tt>ScannerTokens</tt>. These are simple token
+interpretation of the Smalltalk with type and value. This series of
+ScannerTokens is in turn converted into a sequence of sub-instances of
+<tt>JavaToken</tt>. A series of <tt>transformX</tt> methods then walk the sequence of
+Java tokens applying suitable transformations to move things closer to
+the desired form. One transformation is to remove references to self
+if necessary, another converts create(...) method calls to a
+constructor call for the appropriate class.</p>
+
+<p>Writing out a text version of the Java tokens is accomplished by
+simply visiting each token in turn and appending to the current method
+output. No effort is expended to indent statements correctly and also
+some extra spaces will be inserted against standard Java formatting.
+Additionally the original Smalltalk source is appended at the end of
+the method together with the file and line number from where it came
+to help with further manual corrections as may be needed later.</p>
+
+
+<h4>Future Translator Improvements</h4>
+
+<p>I'm not sure how much further effort I am going to expend on the
+translator, but considering the level of Java compilation problems
+present in the translation code there is scope for lots of
+improvements :-)</p>
+
+<ul>
+		<li>Bugs trying to find beginning of expression</li>
+		<li>Bracketting if/while expressions</li>
+		<li>Convert more of the block cases; DiskManager.consistent, forEach,
+etc</li>
+		<li>Use Java abstract method/class support</li>
+		<li>Cast if appropriate to result of make(...) calls</li>
+		<li>Sort out <tt>IntegerVar</tt>/<tt>BooleanVar</tt> support, which may require working out
+the type of fields and calls to make up for lack of C++ operator
+overloading for converting between these classes and primitives and
+equivalents of primitive operations such as +</li>
+		<li>Indent resulting Java code rather than relying on an external source
+formatter to be applied against the generated code</li>
+		<li>Converting to a more standard parse tree may clear up some of the
+code</li>
+		<li>Try and define the transformations as parse-tree modifications in a
+Refactoring or XLST fashion rather than existing primitive Java code</li>
+		<li>Gain documents for XOCs own translator to C++ for a better handle
+on what should be happening - for example class attributes such as ON.CLIENT</li>
+		<li>Tidying up the code!</li>
+		</ul>
+
+<!-- ================================================= -->
+<!-- ================================================= -->
+
+
+<a name="abora-gold"></a>
+<h3>Abora-Gold</h3>
+
+
+<p>Abora-Gold is just my name for the combination of auto and manual
+translation from the Udanax-Gold open-source released by XOC. It is
+<b>not</b> compilable but my prove useful for non-Smalltalk users who are
+interested in reading the Udanax-Gold source code.</p>
+
+<p>There are two source directories present.</p>
+
+<p><b>src</b> is the location for the code which I manually translated from
+X++ for PrimArray and subclasses - this is broken. Additionally there
+are a number of place-holder classes for classes which haven't seen to
+have been released yet by XOC.</p>
+
+<p><b>src-gen</b> is the location of the classes auto-translated from
+Smalltalk by my translator. It will only be present if you have run
+the translator.</p>
+
+		<p>The base class of the UG Smalltalk source is typically
+		<tt>Heaper</tt>, plus a few of the Smalltalk specific lower-level
+		implementation directly subclass <tt>Object</tt>. The Heaper class
+		is translated to <tt>org.abora.gold.xpp.basic.Heaper</tt>, but
+		this subclasses from a made up
+		<tt>org.abora.gold.java.AboraHeaper</tt> class rather than Object.
+		The AboraHeaper class is the superclass for <b>all</b> Abora
+		classes, and is used to hold a few methods that XOC added to the
+			Smalltalk Object class and inherited, and also introduces the names
+		of fluid variables in a non-functional way.</p>
+
+		<p>There are a number of classes referenced from the supplied XOC
+		source that don't appear to be defined. Place holder classes with
+		matching names were created under the
+		<tt>org.abora.gold.java.missing</tt> package and sub-packages.
+		These have been split up into application, handle and Smalltalk
+		packages.</p>
+
+		<p>Earlier work to import the XOC Smalltalk source into Dolphin
+		Smalltalk, followed by a focus on running the XOC tests, indicated
+		that the basic collection classes were missing. These are vital
+		for running the tests, and are widely referenced. An alternative
+		source of the basic collection classes was acquired from some X++
+		sources and are present in the
+		<tt>org.abora.gold.collection.basic</tt> package. These are again
+		place holder implementation, except that the public method
+		definitions have also been added. See Abora-White for a working
+		implementation of these classes.</p>
+
+<!-- abora:footer -->
+$Id$
+<!-- abora:footer_close -->
+    </body>
+  </html>

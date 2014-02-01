@@ -1,0 +1,37 @@
+h1,h2,h3 { color: black; background-color: #FAEBD7;  }
+
+body { background-color: #FFFFFF; }
+
+.draft { background-image: url(draft.gif); }
+
+.new { color: white; background-color: red; }
+
+.st-code { background-color: #F5F5DC; margin-left: 2.0em; padding: 0.2em; border: 2px solid #808080; }
+.st-message { color: #0000CD; }
+.st-literal { color: #C71585; }
+.st-comment { color: #008000; font-style: italic; }
+
+.footer { color: #808080; font-size: smaller; }
+
+.url { display: none; }
+
+a:link { }
+a:visited {  }
+a:hover { background-color: #FAEBD7; }
+
+
+.footer a:link { color: #808080; }
+.footer a:visited { color: #808080; }
+
+.modified-last-week, .modified-last-month { color: white; font-size: smaller; padding-left: 2px; padding-right: 2px; }
+.modified-last-week { background-color: #ff3232; }
+.modified-last-month { background-color: #ff893a; }
+.modified-long-ago { display: none; }
+
+td, th { vertical-align: top; }
+
+a.screenshot:link, a.screenshot:visited { color: #ffffff; none; }
+a.screenshot:hover { color: #FAEBD7; none; }
+
+.feedback1 {border-left: 0.5em solid #CFC; padding-left: 0.5em; font-size: smaller; }
+.feedback-meta { font-style: italic; }

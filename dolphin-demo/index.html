@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+
+  <html>
+
+    <head>
+      <meta	http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<link rel="stylesheet" type="text/css" href="../style-print.css" media="print"/>
+		<link rel="stylesheet" type="text/css" href="../style.css" media="screen"/>
+
+	  <title>Dolphin Demo</title>
+    </head>
+
+    <body>
+<!-- abora:header -->
+      <h1>Dolphin Demo</h1>
+<!-- abora:header_close -->
+
+		<p><b>Dolphin Demo</b> is a Windows executable of a combined
+		server and thick client that implements from scratch a limited
+		subset of the Udanax-Gold capabilities. It supports fine grained
+		links, versioning and differencing. Work has ceased for the moment
+		while attention is focused on a Java implementation.</p>
+
+		<h3>Implemented Features</h3>
+
+		<p>Most of these features are just prototype grade and will
+		require rework before reaching a level suitable for the end user
+		in a stable, efficient hypertext system.
+
+		<ul>
+			<li>Subset of Ent implementation - integer space, no canopies, position based</li>
+		  <li>Simple transclusions between content elements and Ent tree structure</li>
+		  <li>Works and editions</li>
+		  <li>History as frozen works</li>
+		  <li>Primitive endorsements</li>
+		  <li>Front-End text editor with browser on Works and editions</li>
+		  <li>Comparisons between arbitary editions - styled after pyxi by Ka-Ping Ye</li>
+		  <li>Links implemented by transclusions</li>
+		  <li>Simple persistence by saving entire works storage as atomic operation</li>
+		  <li>First pass at Fe-Be (or client/server) split</li>
+		  <li>Open source</li>
+		  <li>Test cases</li>
+		  <li>Executable demo for Windows platform (with fancy colours!)</li>
+		</ul>
+
+
+		<h3>Known Problems</h3>
+		<ul>
+			<li>System slows down significantly for text longer than a few
+			pages Prime problem here is just my un-optimized text editor
+			implementation.</li>
+
+		  <li>Infrequent balancing of Ent tree by Splaying, as my splaying
+		  implementation currently duplicates too many internal
+		  SplitNodes.</li>
+
+			<li>Leaf nodes are split too often in Ent, eg on creating a link
+			that doesn't match existing leaf boundaries.</li>
+
+			<li>UI for defining and following Links is very poor and
+			limiting.</li>
+
+		</ul>
+
+<!-- abora:footer -->
+$Id$
+<!-- abora:footer_close -->
+    </body>
+  </html>

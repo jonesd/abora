@@ -1,0 +1,24 @@
+h1,h2,h3 { color: black; border-bottom: 2pt solid #000000; }
+
+body { background-color: #303030; font-size: smaller; }
+
+.draft { background-image: url(draft.gif); }
+
+.modified-last-week, .modified-last-month, .modified-long-ago { display: none; }
+
+.st-code { border: 1pt solid #808080; padding: 2pt; }
+.st-message { font-weight: bold; }
+.st-literal { }
+.st-comment { font-style: italic; }
+
+.footer { color: #808080; }
+
+.navbar * { display: none; }
+
+.advert * { display: none; }
+
+.url { font-family: Courier, monospace; }
+
+td, th { vertical-align: top; }
+
+a:link, a:visited, a:hover { color: #000000; text-decoration: none; }

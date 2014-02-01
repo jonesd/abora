@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+
+  <html>
+
+    <head>
+      <meta	http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<link rel="stylesheet" type="text/css" href="style-print.css" media="print"/>
+		<link rel="stylesheet" type="text/css" href="style.css" media="screen"/>
+
+	  <title>Abora Features</title>
+    </head>
+
+    <body>
+<!-- abora:header -->
+      <h1>Abora Features</h1>
+<!-- abora:header_close -->
+
+		<p>The Abora hypertext system is intended to be composed of a
+		server component, client API and a variety of client applications
+		demonstrating the capabilities of the server. The server provides
+		a sophisticated and general data management system. Some examples
+		of its use could be as the core of a dynamic web-site, or as a
+		document server for a company network, or even as the repository
+		for a lifetime of personal notes, references and writings. </p>
+
+		<p>The following gives a brief summary of some of the tasks and
+		uses that Abora will be able to help with:</p>
+
+		<ul>
+
+			<li>Heavy re-working of documents - flexible version support,
+			visualisation of changes and inclusion of shared content</li>
+
+			<li>Peer review of documents - categorised discussions on
+			specific sections of content with filtering based on user and
+			open associated tag information.</li>
+
+			<li>Informal working groups - notification of document changes
+			and new links enables spontaneous groups to form around specific
+			documents as needed.</li>
+
+			<li>Richly related documents - sophisticated linking and sharing
+			of content between documents and versions enables a literature
+			of works to be written and used.</li>
+
+			<li>Distributed deployments - Multiple servers allows documents
+			to be replicated for performance, reliability and easier access.
+
+			<li>Secure and controlled document access - user and groups
+			enable flexible access to documents and integrated cryptography
+			improves confidence of authorship and original contents.</li>
+
+			<li>Long lived documents - document identity, sponsorship and
+			distributed garbage collection keeps documents in the system as
+			long as required, and can continue to be found and accurately
+			referenced even after day-to-day modification.</li>
+
+			<li>Beyond text support - all the above capabilities can apply
+			to images, sound, movies and other arbitrary types of
+			content.</li>
+
+      </ul>
+
+      
+      <h3>Xanalogical Features</h3>
+      
+      <p>The core Abora features are inspired by Xanadu and derive
+      from the capabilities of the underlying Ent data structure as
+      present in Udanax-Gold.</p>
+
+      <ul>
+
+			<li><b>Transclusions</b> or virtual-copies can be seen as a form
+			of quoting except the quote is still connected back to the
+			original text so it is always possible to find the original
+			author of any character of text, and all other documents that
+			share the same content. This helps against the problems of
+			quoting out-of-context, and taking benefit from some-one elses
+			work without proper acknowledgement.</li>
+
+			<li>Implemented on top of this is support for <b>fine-grained
+			links</b> that are typed and can be navigated in both
+			directions. Links can be stored separate from the content itself
+			to enable anyone to annotate any other document that they can
+			view. In combination with typed links this enables low-overhead
+			commenting of original text and structured responses such as
+			refutations, agreements, acknowledgements. Links can also be
+			filtered by users to focus on comments from respected or
+			specific viewpoints. This will be a critical feature once
+			hundreds or thousands of links have been attached to a
+			document.</li>
+
+			<li><b>Coordinate space</b> mechanism allows content elements to
+			be mapped over more sophisticated spaces than that of text or
+			uncompressed audio. One possibility is the two dimensions of an
+			uncompressed image. This enables transclusions and links to work
+			across these numerous spaces, for example just the eye of an
+			image of a face could be transcluded into a separate document,
+			and a destination of a link could be to a few seconds of a sound
+			sample.</li>
+
+			<li><b>Sensors</b> or detectors can be attached to objects to
+			learn when certain actions occur. Some examples includes
+			detecting when a new link is added to an interesting document,
+			or when a new edition of a document is made. This can enable the
+			spontaneous grouping of interested parties around a central
+			document that acts as focus for the work.</li>
+
+			<li>These features are all tied into a <b>version system</b>
+			that ensures links stay connected to their original content and
+			transcluded content stays available. Modifications to documents
+			are stored at the level of changes initiated by the user, so
+			between editions changes can be copying and moving in addition
+			to the more primitive deletes and inserts that systems such as
+			CVS would break user level changes down to.</li>
+
+			<li>A significant force that shaped the Udanax-Gold design was
+			the need for an implementation that could expand up to a
+			<b>distributed system</b> comparable to todays World-Wide-Web.
+			There is an interesting mix of mutable and immutable state that
+			enables replication of data, together with idea of sponsors of
+			documents and a distributed garbage collection system to ensure
+			that documents are only removed from the system once they aren't
+			referenced anymore or no-one is prepared to provide sufficient
+			space for them.</li>
+
+      </ul>
+	
+      <h3>Downsides</h3>
+
+      <p>The features list summarises a series of very interesting
+      differences against the standard WWW or even the innumerable
+      custom web-site implementations. Given all this good news, what
+      should one be concerned about?</p>
+
+      <ul>
+
+			<li><b>Complexity</b> of the implementation is significantly
+			higher than was found during the birth of the WWW. This has
+			implications both to the time it will take to write a
+			production-grade version of the server, and to the complexity
+			and level of knowledge required by programmers that are
+			interested in writing or extending clients. Where as any
+			programmer could code up HTTP clients and servers on a whim,
+			just writing a compatible Abora client will be a significant
+			undertaking. Once the project has stabalized, producing well
+			documented versions of the API with ample examples will be an
+			important force on the greater success of the project.</li>
+
+			<li><b>Server reliance</b> is a constraint on the use of
+			clients. A client needs to be in relatively frequent
+			communication with a server, both to find content, but also
+			during modification of content as the server essentially acts as
+			a repository and needs to be informed precisely of higher level
+			actions such as copying text between two locations. Contrast
+			this to the use of CVS and a text editor; a CVS client is used
+			to download a text document from the CVS repository, but then
+			any text editor can make as many changes as it likes before
+			eventually committing the new revision of the document back to
+			the CVS server. It is only at this point that the server
+			attempts to calculate the users changes, which will be encoded
+			up as primitive actions such as inserts and deletes. This
+			frequent communication with the server for Abora clients can be
+			mitigated by running a server on each machine. The other effect
+			though is that clients have to understand the Abora protocol,
+			whereas the text editor knows nothing of CVS, as far as it is
+			concerned it is just opening and saving text documents from the
+			local filing system, and is oblivious to the CVS client which
+			moves files to and from the external CVS server. An Abora client
+			does have to know about Abora, and even with efforts to ease
+			this communication with well documented APIs it will be a
+			significant challenge to the quantity of clients created and
+			extended to support the Abora server.</li>
+
+			<li><b>Performance</b> was a driving factor in the earlier
+			development of Xanadu solutions, especially given the dreams of
+			a world spanning system of interconnected servers. These efforts
+			should enable the performance of the system to grow within a
+			sustainable rate as data and servers are added. Other than
+			question marks over sufficient analysis of the entire system to
+			confirm these hopes, there might be the more pressing concern of
+			performance in the small rather than the large. There are
+			significant basic costs for operations and storage to implement
+			the sophisticated linking, versioning and other capabilities. It
+			is unknown quite how large this constant overhead is at this
+			stage.</li>
+
+		</ul>
+
+
+<!-- abora:footer -->
+$Id$
+<!-- abora:footer_close -->
+    </body>
+  </html>
